@@ -3,6 +3,7 @@
 int led = 13; //LED Pin
 int sensor = 10; //sensor pin
 int val; //numeric variable
+float hall_thresh = 100.0;
 int counter = 0; //count how many times magnet
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
