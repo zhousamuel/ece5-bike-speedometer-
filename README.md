@@ -16,3 +16,17 @@ Tasks to do:
 2. CHECK UNITS OF THE MATH CONVERSIONS, speed might be in meters....
 
 11/16: can print output onto the LCD based on given sensor data. Haven't attached to bike yet. 
+
+
+GITHUB GUIDE:
+
+To push code to the repo (when you have edited the code):
+1. git add ____ <- files edited
+2. git status <- check if it has been added (green)
+3. git commit -m "_______" <- message of what you did
+4. git push origin main
+
+To pull code from the repo (when you need to get the code)
+1. git remote -v
+   a) If there is multiple branches: git pull origin
+   b) If there is one branch: git pull
