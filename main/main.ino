@@ -5,7 +5,7 @@ int led = 13;     //LED Pin
 int sensor = 10;  //sensor pin
 int val;          //numeric variable
 int counter = 0;  //count how many times magnet
-int Contrast = 75;
+//int Contrast = 75;
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
@@ -17,9 +17,9 @@ float distance = 0;
 
 void setup() {
 
- // Serial.begin(9600);
+  // Serial.begin(9600);
 
-  analogWrite(6, Contrast);  // set contrast to pin 6
+  // analogWrite(6, Contrast);  // set contrast to pin 6
 
   pinMode(led, OUTPUT);           //set led as output
   pinMode(sensor, INPUT);         //set sensor pin as input
