@@ -1,5 +1,6 @@
 #include <LiquidCrystal.h>
 
+const float pi = 3.14;
 int led = 13;     //LED Pin
 int sensor = 10;  //sensor pin
 int val;          //numeric variable
@@ -8,8 +9,11 @@ int Contrast = 75;
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
+float bike_radius = 33; //cm
 float circumference = 1.2;  // ft, FIXME
-const float timeInterval = 5000; // update speed every 5 seconds                          
+const float timeInterval = 5000; // update speed every 5 seconds
+
+float distance = 0;
 
 void setup() {
 
@@ -20,11 +24,12 @@ void setup() {
   pinMode(led, OUTPUT);           //set led as output
   pinMode(sensor, INPUT);         //set sensor pin as input
   lcd.begin(16, 2);               //set up the LCD's number of columns and rows
-  lcd.print("BIKE SPEEDOMETER");  // print BIKE SPEEDOMETER on LCD
 }
 
 void loop() {
   lcd.setCursor(0, 1);
+  lcd.print("Distance: ");
+  lcd.setCursor(0,0);
   lcd.print("Speed: ");
   float event_started = millis();
   counter = 0;
@@ -42,4 +47,9 @@ void loop() {
   float speed = (circumference * (counter * 20)) / (timeInterval / 1000);
   //lcd.print(counter);
   lcd.print(speed);
+
+  lcd.setCursor(0, 1);
+  distance += (counter) * (2*pi*bike_radius);
+  lcd.print(distance);
+
 }
