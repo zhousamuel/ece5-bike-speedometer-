@@ -13,4 +13,6 @@ Week 9: Finish assembling hardware add-ons. Final test and error-fixing of the p
 
 Tasks to do:
 1. solder the breadboard
-2. 
+2. CHECK UNITS OF THE MATH CONVERSIONS, speed might be in meters....
+
+11/16: can print output onto the LCD based on given sensor data. Haven't attached to bike yet. 
