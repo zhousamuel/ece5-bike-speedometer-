@@ -30,3 +30,7 @@ To pull code from the repo (when you need to get the code)
 1. git remote -v
    a) If there is multiple branches: git pull origin
    b) If there is one branch: git pull
+
+Window commands:
+dir: list everything inside current directory
+cd: change directory
