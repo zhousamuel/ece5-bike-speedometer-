@@ -7,15 +7,17 @@ int counter; //count how many times magnet
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-float bike_radius = 0.13; //m
-float circumference = 0.26 * pi;  // meters
+float bike_radius = 0.28; //m
 const float timeInterval = 5000; // update speed every 5 seconds
 
 float distance = 0;
+int rotations = 0;
 
-// Variables for the bike turn lights
-bool rightTurn = false;
-
+// ISR(TIMER1_COMPA_vect)
+// {
+// count++;
+// flash();
+// }
 
 void setup() {
 
@@ -25,13 +27,20 @@ void setup() {
   // pinMode(led, OUTPUT);    
   pinMode(sensor, INPUT);         //set sensor pin as input (13)
   lcd.begin(16, 2);        //set up the LCD's number of columns and rows
+
+  // cli();
+  // TCCR1A = 0;
+  // TCCR1B = 0; 
+  // OCR1A = reload;
+  // TCCR1B = (1<<WGM12) | (1<<CS12); 
+  // TIMSK1 = (1<<OCIE1A); 
+  // sei(); 
 }
 
 void loop() {
-
   lcd.setCursor(0,0);
   //lcd.print("Speed: ");
-  lcd.print("Counter: ");
+  lcd.print("Speed: ");
 
   float event_started = millis();
   counter = 0;
@@ -60,14 +69,23 @@ void loop() {
   // counter : reveloutions per second
   // timeInterval = seconds
 
-  //float speed = (circumference * (counter / 5)) / (timeInterval / 1000);
-  lcd.print(counter);
+  //meters * rev/5s * 1 mile/1609.344 meters * 5 * 60s/1min * 60min/1hr  
+  //miles/5 seconds 
+  //1609.344
+
+  // float speed = (circumference * (counter / 5)) / (timeInterval / 1000); <- 
+  float speed =  (counter * 12 * (0.56 * pi)) / 1609.344;
+  //lcd.print(counter);
+  lcd.print(speed);
+  lcd.print(" mph");
   //Serial.println(counter);
 
-  // lcd.setCursor(0, 1);
-  // bike_radius => m
-  // distance += (counter) * (2*pi*bike_radius);
-  // lcd.print("Distance: ");
-  // lcd.print(distance);
+  rotations += counter;
 
+   lcd.setCursor(0, 1);
+  // bike_radius => m
+  distance = (rotations) * (2*pi*bike_radius);
+   lcd.print("Distance: ");
+   lcd.print(rotations);
+   lcd.print("m");
 }
